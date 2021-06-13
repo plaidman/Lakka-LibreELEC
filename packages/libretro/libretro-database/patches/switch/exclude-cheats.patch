@@ -1,0 +1,13 @@
+diff --git a/Makefile b/Makefile
+index 0c3a33fd..b5cbf954 100644
+--- a/Makefile
++++ b/Makefile
+@@ -16,7 +16,7 @@ all:
+ 
+ install:
+ 	mkdir -p $(DESTDIR)$(INSTALLDIR)
+-	cp -ar -t $(DESTDIR)$(INSTALLDIR) cht cursors rdb
++	cp -ar -t $(DESTDIR)$(INSTALLDIR) cursors rdb
+ 	find $(DESTDIR)$(INSTALLDIR) -type f -name "*.zip" -delete
+ 	find $(DESTDIR)$(INSTALLDIR) -type f -name "*.xml" -delete
+ 

@@ -34,6 +34,10 @@ PKG_LONGDESC="Repository containing cheatcode files, content data files, etc."
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
+if [ "$DEVICE" = "Switch" ]; then
+  PKG_PATCH_DIRS="switch"
+fi
+
 configure_target() {
   cd $PKG_BUILD
 }
