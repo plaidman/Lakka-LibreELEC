@@ -183,12 +183,12 @@ makeinstall_target() {
   # General configuration
   sed -i -e "s/# libretro_directory =/libretro_directory = \"\/tmp\/cores\"/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# libretro_info_path =/libretro_info_path = \"\/tmp\/cores\"/" $INSTALL/etc/retroarch.cfg
-  sed -i -e "s/# rgui_browser_directory =/rgui_browser_directory =\/storage\/roms/" $INSTALL/etc/retroarch.cfg
+  sed -i -e "s/# rgui_browser_directory =/rgui_browser_directory =\/flash\/external\/roms/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# content_database_path =/content_database_path =\/tmp\/database\/rdb/" $INSTALL/etc/retroarch.cfg
-  sed -i -e "s/# playlist_directory =/playlist_directory =\/storage\/playlists/" $INSTALL/etc/retroarch.cfg
-  sed -i -e "s/# savefile_directory =/savefile_directory =\/storage\/savefiles/" $INSTALL/etc/retroarch.cfg
-  sed -i -e "s/# savestate_directory =/savestate_directory =\/storage\/savestates/" $INSTALL/etc/retroarch.cfg
-  sed -i -e "s/# system_directory =/system_directory =\/tmp\/system/" $INSTALL/etc/retroarch.cfg
+  sed -i -e "s/# playlist_directory =/playlist_directory =\/flash\/external\/playlists/" $INSTALL/etc/retroarch.cfg
+  sed -i -e "s/# savefile_directory =/savefile_directory =\/flash\/external\/savefiles/" $INSTALL/etc/retroarch.cfg
+  sed -i -e "s/# savestate_directory =/savestate_directory =\/flash\/external\/savestates/" $INSTALL/etc/retroarch.cfg
+  sed -i -e "s/# system_directory =/system_directory =\/flash\/external\/bios/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# screenshot_directory =/screenshot_directory =\/storage\/screenshots/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# video_shader_dir =/video_shader_dir =\/tmp\/shaders/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# rgui_show_start_screen = true/rgui_show_start_screen = false/" $INSTALL/etc/retroarch.cfg
@@ -228,11 +228,11 @@ makeinstall_target() {
   else
     sed -i -e "s/# video_windowed_fullscreen = true/video_windowed_fullscreen = true/" $INSTALL/etc/retroarch.cfg
   fi
-  sed -i -e "s/# video_smooth = true/video_smooth = false/" $INSTALL/etc/retroarch.cfg
+  sed -i -e "s/# video_smooth = true/video_smooth = true/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# video_aspect_ratio_auto = false/video_aspect_ratio_auto = true/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# video_threaded = false/video_threaded = true/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# video_font_path =/video_font_path =\/usr\/share\/retroarch-assets\/xmb\/monochrome\/font.ttf/" $INSTALL/etc/retroarch.cfg
-  sed -i -e "s/# video_font_size = 48/video_font_size = 32/" $INSTALL/etc/retroarch.cfg
+  sed -i -e "s/# video_font_size = 32/video_font_size = 20/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# video_filter_dir =/video_filter_dir =\/usr\/share\/video_filters/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# video_gpu_screenshot = true/video_gpu_screenshot = false/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# video_fullscreen = false/video_fullscreen = true/" $INSTALL/etc/retroarch.cfg
@@ -270,7 +270,7 @@ makeinstall_target() {
   fi
   sed -i -e "s/# menu_core_enable = true/menu_core_enable = false/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# thumbnails_directory =/thumbnails_directory = \/storage\/thumbnails/" $INSTALL/etc/retroarch.cfg
-  echo "menu_show_advanced_settings = \"false\"" >> $INSTALL/etc/retroarch.cfg
+  echo "menu_show_advanced_settings = \"true\"" >> $INSTALL/etc/retroarch.cfg
   echo "menu_wallpaper_opacity = \"1.0\"" >> $INSTALL/etc/retroarch.cfg
   echo "content_show_images = \"false\"" >> $INSTALL/etc/retroarch.cfg
   echo "content_show_music = \"false\"" >> $INSTALL/etc/retroarch.cfg
@@ -323,12 +323,19 @@ makeinstall_target() {
 
   # Switch
   if [ "$PROJECT" = "L4T" -a "$DEVICE" = "Switch" ]; then
+    echo "menu_widget_scale_auto = false" >> $INSTALL/etc/retroarch.cfg
+    echo "menu_widget_scale_factor = 0.7" >> $INSTALL/etc/retroarch.cfg
+    echo "menu_show_shutdown = false" >> $INSTALL/etc/retroarch.cfg
+    echo "menu_timedate_style = 20" >> $INSTALL/etc/retroarch.cfg
+    echo "menu_timedate_date_separator = 1" >> $INSTALL/etc/retroarch.cfg
+    sed -i -e "s/# video_message_pos_x = 0.05/video_message_pos_x = 0.02/" $INSTALL/etc/retroarch.cfg
+    sed -i -e "s/# video_message_pos_y = 0.05/video_message_pos_y = 0.03/" $INSTALL/etc/retroarch.cfg
+
     sed -i -e "s/# menu_pointer_enable = false/menu_pointer_enable = true/" $INSTALL/etc/retroarch.cfg
     sed -i -e "s/# video_hard_sync = false/video_hard_sync = true/" $INSTALL/etc/retroarch.cfg
     sed -i -e "s/# video_crop_overscan = true/video_crop_overscan = false/" $INSTALL/etc/retroarch.cfg
     sed -i -e "s/# menu_show_online_updater = true/menu_show_online_updater = false/" $INSTALL/etc/retroarch.cfg
     sed -i -e "s/# input_joypad_driver =/input_joypad_driver = udev/" $INSTALL/etc/retroarch.cfg
-    sed -i -e "s/video_threaded = true/video_threaded = false/" $INSTALL/etc/retroarch.cfg
     sed -i -e "s/input_autodetect_enable = true/input_autodetect_enable = false/"  $INSTALL/etc/retroarch.cfg
 
     #Fix joycon index

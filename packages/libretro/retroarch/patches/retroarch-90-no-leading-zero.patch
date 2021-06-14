@@ -1,0 +1,34 @@
+diff --git a/intl/msg_hash_us.h b/intl/msg_hash_us.h
+index 0db5a1a590..23b3b78018 100644
+--- a/intl/msg_hash_us.h
++++ b/intl/msg_hash_us.h
+@@ -8181,7 +8181,7 @@ MSG_HASH(
+    )
+ MSG_HASH(
+    MENU_ENUM_LABEL_VALUE_TIMEDATE_MD_HM_AMPM,
+-   "MM-DD HH:MM (AM/PM)"
++   "MM-DD H:MM (AM/PM)"
+    )
+ MSG_HASH(
+    MENU_ENUM_LABEL_VALUE_TIMEDATE_DDMMYYYY_HMS_AMPM,
+diff --git a/retroarch.c b/retroarch.c
+index 4e643c2af7..640b6e717e 100644
+--- a/retroarch.c
++++ b/retroarch.c
+@@ -4520,13 +4520,13 @@ void menu_display_timedate(gfx_display_ctx_datetime_t *datetime)
+             switch (datetime->date_separator)
+             {
+                case MENU_TIMEDATE_DATE_SEPARATOR_SLASH:
+-                  format_str = "%m/%d %I:%M %p";
++                  format_str = "%m/%d    %l:%M %p";
+                   break;
+                case MENU_TIMEDATE_DATE_SEPARATOR_PERIOD:
+-                  format_str = "%m.%d %I:%M %p";
++                  format_str = "%m.%d    %l:%M %p";
+                   break;
+                default:
+-                  format_str = "%m-%d %I:%M %p";
++                  format_str = "%m-%d    %l:%M %p";
+                   break;
+             }
+             break;
